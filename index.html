@@ -2,10 +2,13 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Auraassist - Aplikasi analisis kesehatan keuangan pribadi untuk mahasiswa dan pekerja">
+    <meta name="theme-color" content="#0d47a1">
     <title>Auraassist - Analisis Kesehatan Keuangan</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%230d47a1' d='M100 10 L180 50 L180 150 L100 190 L20 150 L20 50 Z'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='80' font-weight='bold' fill='white' text-anchor='middle'%3EAA%3C/text%3E%3C/svg%3E">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -327,8 +330,35 @@
             position: fixed;
             height: 100vh;
             overflow-y: auto;
-            transition: all 0.3s;
-            z-index: 1000;
+            transition: all 0.3s ease-in-out;
+            z-index: 1050;
+            left: 0;
+            top: 0;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1040;
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
         }
 
         .sidebar-header {
@@ -577,11 +607,13 @@
 
             .sidebar.active {
                 margin-left: 0;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.3);
             }
 
             .main-content {
                 margin-left: 0;
                 width: 100%;
+                padding: 1rem;
             }
 
             .hero-headline {
@@ -598,6 +630,195 @@
 
             .month-stats {
                 grid-template-columns: 1fr;
+            }
+
+            .score-display {
+                font-size: 2.5rem !important;
+            }
+
+            .topbar {
+                padding: 0.75rem 1rem;
+            }
+
+            .card-stat {
+                padding: 1rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .auth-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .cta-button {
+                padding: 0.875rem 2rem;
+                font-size: 1rem;
+            }
+
+            .hero-section {
+                min-height: auto;
+                padding: 3rem 0;
+            }
+
+            .features-section, .aura-score-section {
+                padding: 3rem 0;
+            }
+
+            .score-visual {
+                width: 200px;
+                height: 200px;
+            }
+
+            .score-inner {
+                width: 150px !important;
+                height: 150px !important;
+            }
+
+            .month-card-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .month-card-header .text-end {
+                margin-top: 1rem;
+                text-align: left !important;
+            }
+
+            .table-responsive {
+                font-size: 0.875rem;
+            }
+
+            .chart-container {
+                height: 250px !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-headline {
+                font-size: 1.75rem;
+            }
+
+            .hero-subheadline {
+                font-size: 0.9rem;
+            }
+
+            .auth-title {
+                font-size: 1.5rem;
+            }
+
+            .month-stats {
+                gap: 0.5rem;
+            }
+
+            .stat-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.25rem;
+            }
+
+            h4 {
+                font-size: 1.25rem;
+            }
+
+            h5 {
+                font-size: 1.1rem;
+            }
+
+            .status-badge {
+                padding: 0.4rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            .btn {
+                font-size: 0.875rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .card-stat h5 {
+                font-size: 1rem;
+            }
+
+            .footer-landing {
+                text-align: center;
+            }
+
+            .footer-landing .col-md-6 {
+                text-align: center !important;
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Tablet Responsive */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .sidebar {
+                width: 220px;
+            }
+
+            .main-content {
+                margin-left: 220px;
+                width: calc(100% - 220px);
+            }
+
+            .hero-headline {
+                font-size: 2.5rem;
+            }
+
+            .card-stat {
+                padding: 1.25rem;
+            }
+        }
+
+        /* Large Screen Optimization */
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1320px;
+            }
+
+            .hero-headline {
+                font-size: 4rem;
+            }
+
+            .hero-subheadline {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Touch Device Optimization */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-item {
+                padding: 1rem 1.5rem;
+            }
+
+            .cta-button, .btn {
+                min-height: 44px;
+                padding: 0.75rem 1.5rem;
+            }
+
+            .form-control, .form-select {
+                font-size: 16px; /* Prevents zoom on iOS */
+                min-height: 44px;
+            }
+
+            input[type="date"], input[type="number"] {
+                font-size: 16px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .sidebar, .topbar button, .cta-button {
+                display: none !important;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .card-stat {
+                break-inside: avoid;
             }
         }
     </style>
@@ -768,24 +989,32 @@
 
 <!-- ========== DASHBOARD ========== -->
 <div id="dashboardPage" class="hidden">
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <div class="dashboard-wrapper">
         <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <div class="sidebar-brand">Auraassist</div>
-                <small style="color: rgba(255,255,255,0.6);" id="userNameDisplay">User</small>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="sidebar-brand">Auraassist</div>
+                        <small style="color: rgba(255,255,255,0.6);" id="userNameDisplay">User</small>
+                    </div>
+                    <button class="btn btn-sm btn-link text-white d-md-none" onclick="toggleSidebar()">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
             </div>
             <div class="sidebar-nav">
                 <div class="nav-item active" onclick="showSection('overview')">
-                    <span>📊 Dashboard</span>
+                    <i class="bi bi-speedometer2 me-2"></i><span>Dashboard</span>
                 </div>
                 <div class="nav-item" onclick="showSection('pencatatan')">
-                    <span>➕ Pencatatan Harian</span>
+                    <i class="bi bi-plus-circle me-2"></i><span>Pencatatan Harian</span>
                 </div>
                 <div class="nav-item" onclick="showSection('laporan')">
-                    <span>📈 Laporan Bulanan</span>
+                    <i class="bi bi-graph-up me-2"></i><span>Laporan Bulanan</span>
                 </div>
                 <div class="nav-item" onclick="logoutUser()">
-                    <span>🚪 Logout</span>
+                    <i class="bi bi-box-arrow-right me-2"></i><span>Logout</span>
                 </div>
             </div>
         </div>
@@ -793,18 +1022,20 @@
         <div class="main-content">
             <div class="topbar">
                 <div>
-                    <button class="btn btn-sm btn-outline-secondary d-md-none" onclick="toggleSidebar()">☰ Menu</button>
-                    <h4 class="d-inline ms-2" id="pageTitle">Dashboard</h4>
+                    <button class="btn btn-sm btn-primary d-md-none" onclick="toggleSidebar()">
+                        <i class="bi bi-list"></i> Menu
+                    </button>
+                    <h4 class="d-inline ms-2 mb-0" id="pageTitle">Dashboard</h4>
                 </div>
-                <div>
-                    <span id="currentDate"></span>
+                <div class="d-none d-md-block">
+                    <small id="currentDate"></small>
                 </div>
             </div>
 
             <!-- Overview Section -->
             <div id="overviewSection">
-                <div class="row g-4 mb-4">
-                    <div class="col-md-4">
+                <div class="row g-3 g-md-4 mb-4">
+                    <div class="col-12 col-lg-4">
                         <div class="card-stat">
                             <div class="aura-score-dashboard">
                                 <div class="score-display" id="auraScoreDisplay">0</div>
@@ -813,45 +1044,51 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-12 col-lg-8">
                         <div class="row g-3">
-                            <div class="col-md-4">
+                            <div class="col-12 col-sm-4">
                                 <div class="card-stat">
-                                    <div class="stat-icon" style="background: linear-gradient(135deg, #10b981, #059669);">💰</div>
+                                    <div class="stat-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                                        <i class="bi bi-cash-coin"></i>
+                                    </div>
                                     <small class="text-muted">Pemasukan</small>
-                                    <h4 id="totalIncome">Rp 0</h4>
+                                    <h4 id="totalIncome" class="mb-0">Rp 0</h4>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-12 col-sm-4">
                                 <div class="card-stat">
-                                    <div class="stat-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">💸</div>
+                                    <div class="stat-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                                        <i class="bi bi-credit-card"></i>
+                                    </div>
                                     <small class="text-muted">Pengeluaran</small>
-                                    <h4 id="totalExpense">Rp 0</h4>
+                                    <h4 id="totalExpense" class="mb-0">Rp 0</h4>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-12 col-sm-4">
                                 <div class="card-stat">
-                                    <div class="stat-icon" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);">🏦</div>
+                                    <div class="stat-icon" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);">
+                                        <i class="bi bi-piggy-bank"></i>
+                                    </div>
                                     <small class="text-muted">Sisa Dana</small>
-                                    <h4 id="remainingMoney">Rp 0</h4>
+                                    <h4 id="remainingMoney" class="mb-0">Rp 0</h4>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row g-4">
-                    <div class="col-md-6">
+                <div class="row g-3 g-md-4">
+                    <div class="col-12 col-lg-6">
                         <div class="card-stat">
-                            <h5>Proporsi Pengeluaran</h5>
+                            <h5 class="mb-3">Proporsi Pengeluaran</h5>
                             <div class="chart-container">
                                 <canvas id="donutChart"></canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-12 col-lg-6">
                         <div class="card-stat">
-                            <h5>Tren Pengeluaran Harian</h5>
+                            <h5 class="mb-3">Tren Pengeluaran Harian</h5>
                             <div class="chart-container">
                                 <canvas id="lineChart"></canvas>
                             </div>
@@ -913,63 +1150,142 @@
 
             <!-- Laporan Section -->
             <div id="laporanSection" class="hidden">
-                <!-- Selector Bulan -->
+                <!-- Selector Periode -->
                 <div class="card-stat mb-4">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <h5 class="mb-0">📅 Pilih Periode Laporan</h5>
+                    <div class="row align-items-center mb-3">
+                        <div class="col-md-12">
+                            <h5 class="mb-3">📅 Pilih Periode Laporan</h5>
+                            <div class="btn-group w-100 mb-3" role="group">
+                                <button type="button" class="btn btn-outline-primary active" id="btnMonthly" onclick="setPeriodType('monthly')">
+                                    Bulanan
+                                </button>
+                                <button type="button" class="btn btn-outline-primary" id="btnDaily" onclick="setPeriodType('daily')">
+                                    Harian
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="row g-2">
-                                <div class="col-6">
-                                    <label class="form-label" style="font-size: 0.875rem; margin-bottom: 0.25rem;">Bulan</label>
-                                    <select class="form-control" id="selectMonth" onchange="generateReport()">
-                                        <option value="0">Januari</option>
-                                        <option value="1">Februari</option>
-                                        <option value="2">Maret</option>
-                                        <option value="3">April</option>
-                                        <option value="4">Mei</option>
-                                        <option value="5">Juni</option>
-                                        <option value="6">Juli</option>
-                                        <option value="7">Agustus</option>
-                                        <option value="8">September</option>
-                                        <option value="9">Oktober</option>
-                                        <option value="10">November</option>
-                                        <option value="11">Desember</option>
-                                    </select>
-                                </div>
-                                <div class="col-6">
-                                    <label class="form-label" style="font-size: 0.875rem; margin-bottom: 0.25rem;">Tahun</label>
-                                    <input type="number" class="form-control" id="selectYear" min="2020" max="2030" onchange="generateReport()" placeholder="2025">
-                                </div>
+                    </div>
+                    
+                    <!-- Monthly Selector -->
+                    <div id="monthlySelector">
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <label class="form-label" style="font-size: 0.875rem; margin-bottom: 0.25rem;">Bulan</label>
+                                <select class="form-control" id="selectMonth" onchange="generateReport()">
+                                    <option value="0">Januari</option>
+                                    <option value="1">Februari</option>
+                                    <option value="2">Maret</option>
+                                    <option value="3">April</option>
+                                    <option value="4">Mei</option>
+                                    <option value="5">Juni</option>
+                                    <option value="6">Juli</option>
+                                    <option value="7">Agustus</option>
+                                    <option value="8">September</option>
+                                    <option value="9">Oktober</option>
+                                    <option value="10">November</option>
+                                    <option value="11">Desember</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" style="font-size: 0.875rem; margin-bottom: 0.25rem;">Tahun</label>
+                                <input type="number" class="form-control" id="selectYear" min="2020" max="2030" onchange="generateReport()" placeholder="2025">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Daily Selector -->
+                    <div id="dailySelector" class="hidden">
+                        <div class="row g-2">
+                            <div class="col-md-4">
+                                <label class="form-label" style="font-size: 0.875rem; margin-bottom: 0.25rem;">Tanggal</label>
+                                <input type="date" class="form-control" id="selectDate" onchange="generateDailyReport()">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label" style="font-size: 0.875rem; margin-bottom: 0.25rem;">Hari</label>
+                                <input type="text" class="form-control" id="displayDay" readonly placeholder="Pilih tanggal">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label" style="font-size: 0.875rem; margin-bottom: 0.25rem;">&nbsp;</label>
+                                <button class="btn btn-gradient w-100" onclick="generateDailyReport()">Lihat Laporan</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Laporan Bulan Terpilih -->
-                <div class="card-stat mb-4">
-                    <h4 class="mb-3">Laporan Bulanan - <span id="reportMonth"></span></h4>
-                    <div class="row g-3 mb-4">
-                        <div class="col-md-3">
-                            <div class="text-center">
-                                <div class="score-display" style="font-size: 3rem;" id="reportAuraScore">0</div>
-                                <small class="text-muted">Aura Score</small>
+                <!-- Laporan Bulanan -->
+                <div id="monthlyReport">
+                    <div class="card-stat mb-4">
+                        <h4 class="mb-3">Laporan Bulanan - <span id="reportMonth"></span></h4>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <div class="score-display" style="font-size: 3rem;" id="reportAuraScore">0</div>
+                                    <small class="text-muted">Aura Score</small>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="status-badge status-sehat mb-2" id="reportStatus">Sehat</div>
+                                <p id="reportSummary" class="text-muted"></p>
                             </div>
                         </div>
-                        <div class="col-md-9">
-                            <div class="status-badge status-sehat mb-2" id="reportStatus">Sehat</div>
-                            <p id="reportSummary" class="text-muted"></p>
-                        </div>
+                    </div>
+
+                    <h5 class="mb-3">Analisis 5 Indikator</h5>
+                    <div id="indicatorsList"></div>
+
+                    <div class="recommendation-box">
+                        <h5>💡 Rekomendasi Personal</h5>
+                        <div id="recommendationList"></div>
                     </div>
                 </div>
 
-                <h5 class="mb-3">Analisis 5 Indikator</h5>
-                <div id="indicatorsList"></div>
+                <!-- Laporan Harian -->
+                <div id="dailyReport" class="hidden">
+                    <div class="card-stat mb-4">
+                        <h4 class="mb-3">Laporan Harian - <span id="dailyReportDate"></span></h4>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="card-stat" style="background: linear-gradient(135deg, #10b981, #059669); color: white;">
+                                    <h6>💰 Total Pemasukan</h6>
+                                    <h3 id="dailyIncome">Rp 0</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card-stat" style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white;">
+                                    <h6>💸 Total Pengeluaran</h6>
+                                    <h3 id="dailyExpense">Rp 0</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card-stat" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;">
+                                    <h6>🏦 Saldo Harian</h6>
+                                    <h3 id="dailyBalance">Rp 0</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="recommendation-box">
-                    <h5>💡 Rekomendasi Personal</h5>
-                    <div id="recommendationList"></div>
+                    <div class="card-stat mb-4">
+                        <h5 class="mb-3">📋 Detail Transaksi Hari Ini</h5>
+                        <div id="dailyTransactionList"></div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card-stat">
+                                <h6 class="mb-3">Kebutuhan vs Keinginan</h6>
+                                <div class="chart-container" style="height: 200px;">
+                                    <canvas id="dailyDonutChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-stat">
+                                <h6 class="mb-3">Ringkasan Kategori</h6>
+                                <div id="dailyCategorySummary"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Laporan Per Bulan (Card View) -->
@@ -1033,7 +1349,9 @@ let currentUser = null;
 let donutChart = null;
 let lineChart = null;
 let trendChart = null;
+let dailyDonutChart = null;
 let viewMode = 'table'; // 'table' or 'cards'
+let periodType = 'monthly'; // 'monthly' or 'daily'
 
 // ========== UTILITIES ==========
 function hashPassword(password) {
@@ -1642,6 +1960,42 @@ function loadTransactions() {
 }
 
 // ========== REPORT ==========
+function setPeriodType(type) {
+    periodType = type;
+    
+    // Toggle button active state
+    document.getElementById('btnMonthly').classList.remove('active');
+    document.getElementById('btnDaily').classList.remove('active');
+    
+    if (type === 'monthly') {
+        document.getElementById('btnMonthly').classList.add('active');
+        document.getElementById('monthlySelector').classList.remove('hidden');
+        document.getElementById('dailySelector').classList.add('hidden');
+        document.getElementById('monthlyReport').classList.remove('hidden');
+        document.getElementById('dailyReport').classList.add('hidden');
+        generateReport();
+    } else {
+        document.getElementById('btnDaily').classList.add('active');
+        document.getElementById('monthlySelector').classList.add('hidden');
+        document.getElementById('dailySelector').classList.remove('hidden');
+        document.getElementById('monthlyReport').classList.add('hidden');
+        document.getElementById('dailyReport').classList.remove('hidden');
+        
+        // Set today's date
+        const today = getToday();
+        document.getElementById('selectDate').value = today;
+        updateDayDisplay(today);
+        generateDailyReport();
+    }
+}
+
+function updateDayDisplay(dateString) {
+    const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    const date = new Date(dateString);
+    const dayName = days[date.getDay()];
+    document.getElementById('displayDay').value = dayName;
+}
+
 function initReportSelectors() {
     const now = new Date();
     const currentMonth = now.getMonth();
@@ -1650,6 +2004,15 @@ function initReportSelectors() {
     // Set current month and year
     document.getElementById('selectMonth').value = currentMonth;
     document.getElementById('selectYear').value = currentYear;
+    
+    // Set current date
+    document.getElementById('selectDate').value = getToday();
+    updateDayDisplay(getToday());
+    
+    // Add event listener for date change
+    document.getElementById('selectDate').addEventListener('change', function() {
+        updateDayDisplay(this.value);
+    });
 }
 
 function generateReport() {
@@ -1728,6 +2091,136 @@ function generateReport() {
     
     // Generate Trend Chart
     generateTrendChart();
+}
+
+function generateDailyReport() {
+    const selectedDate = document.getElementById('selectDate').value;
+    
+    if (!selectedDate) {
+        alert('❌ Pilih tanggal terlebih dahulu!');
+        return;
+    }
+    
+    updateDayDisplay(selectedDate);
+    
+    const transactions = getUserTransactions();
+    const dailyTransactions = transactions.filter(t => t.date === selectedDate);
+    
+    // Calculate daily stats
+    let dailyIncome = 0;
+    let dailyExpense = 0;
+    let kebutuhanExpense = 0;
+    let keinginanExpense = 0;
+    
+    dailyTransactions.forEach(t => {
+        if (t.type === 'income') {
+            dailyIncome += t.amount;
+        } else {
+            dailyExpense += t.amount;
+            if (t.category === 'kebutuhan') {
+                kebutuhanExpense += t.amount;
+            } else {
+                keinginanExpense += t.amount;
+            }
+        }
+    });
+    
+    const dailyBalance = dailyIncome - dailyExpense;
+    
+    // Display date
+    const date = new Date(selectedDate);
+    const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    document.getElementById('dailyReportDate').textContent = 
+        `${days[date.getDay()]}, ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+    
+    // Display summary
+    document.getElementById('dailyIncome').textContent = formatMoney(dailyIncome);
+    document.getElementById('dailyExpense').textContent = formatMoney(dailyExpense);
+    document.getElementById('dailyBalance').textContent = formatMoney(dailyBalance);
+    
+    // Display transactions
+    const transactionList = document.getElementById('dailyTransactionList');
+    
+    if (dailyTransactions.length === 0) {
+        transactionList.innerHTML = '<p class="text-muted text-center">Tidak ada transaksi pada tanggal ini</p>';
+    } else {
+        transactionList.innerHTML = dailyTransactions.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(t => `
+            <div class="transaction-item">
+                <div>
+                    <strong>${t.type === 'income' ? '💰' : '💸'} ${t.note}</strong>
+                    <br>
+                    <small class="text-muted">${t.category ? 'Kategori: ' + t.category : 'Pemasukan'} • ${new Date(t.createdAt).toLocaleTimeString('id-ID', {hour: '2-digit', minute: '2-digit'})}</small>
+                </div>
+                <div class="text-end">
+                    <strong style="color: ${t.type === 'income' ? '#10b981' : '#ef4444'}">
+                        ${t.type === 'income' ? '+' : '-'} ${formatMoney(t.amount)}
+                    </strong>
+                </div>
+            </div>
+        `).join('');
+    }
+    
+    // Display donut chart
+    const donutCtx = document.getElementById('dailyDonutChart');
+    if (dailyDonutChart) dailyDonutChart.destroy();
+    
+    dailyDonutChart = new Chart(donutCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Kebutuhan', 'Keinginan'],
+            datasets: [{
+                data: [kebutuhanExpense || 1, keinginanExpense || 1],
+                backgroundColor: ['#10b981', '#f59e0b']
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+    
+    // Display category summary
+    const categorySummary = document.getElementById('dailyCategorySummary');
+    const totalExpense = kebutuhanExpense + keinginanExpense;
+    const kebutuhanPercent = totalExpense > 0 ? (kebutuhanExpense / totalExpense * 100).toFixed(1) : 0;
+    const keinginanPercent = totalExpense > 0 ? (keinginanExpense / totalExpense * 100).toFixed(1) : 0;
+    
+    categorySummary.innerHTML = `
+        <div class="mb-3" style="background: #f3f4f6; padding: 1rem; border-radius: 8px;">
+            <div class="d-flex justify-content-between mb-2">
+                <span>🍽️ Kebutuhan</span>
+                <strong style="color: #10b981;">${kebutuhanPercent}%</strong>
+            </div>
+            <div class="progress mb-1" style="height: 10px;">
+                <div class="progress-bar bg-success" style="width: ${kebutuhanPercent}%"></div>
+            </div>
+            <small class="text-muted">${formatMoney(kebutuhanExpense)}</small>
+        </div>
+        
+        <div style="background: #f3f4f6; padding: 1rem; border-radius: 8px;">
+            <div class="d-flex justify-content-between mb-2">
+                <span>🎮 Keinginan</span>
+                <strong style="color: #f59e0b;">${keinginanPercent}%</strong>
+            </div>
+            <div class="progress mb-1" style="height: 10px;">
+                <div class="progress-bar bg-warning" style="width: ${keinginanPercent}%"></div>
+            </div>
+            <small class="text-muted">${formatMoney(keinginanExpense)}</small>
+        </div>
+        
+        <div class="mt-3 pt-3" style="border-top: 1px solid #e5e7eb;">
+            <div class="d-flex justify-content-between">
+                <strong>Total Pengeluaran</strong>
+                <strong style="color: #ef4444;">${formatMoney(totalExpense)}</strong>
+            </div>
+        </div>
+    `;
 }
 
 function toggleViewMode() {
